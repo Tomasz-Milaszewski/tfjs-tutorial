@@ -13,6 +13,7 @@
     "@tensorflow/tfjs-vis": "^1.2.0"
   },
   "devDependencies": {
-    "webpack": "^4.41.0"
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
   }
 }
