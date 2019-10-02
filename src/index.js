@@ -33,7 +33,9 @@ async function run() {
       height: 300
     }
   );
-
+  // Create the model
+  const model = createModel();  
+  tfvis.show.modelSummary({name: 'Model Summary'}, model);
 }
 
 document.addEventListener('DOMContentLoaded', run);
