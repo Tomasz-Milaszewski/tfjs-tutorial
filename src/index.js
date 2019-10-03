@@ -57,8 +57,14 @@ function createModel() {
   const model = tf.sequential(); 
   
   // Add a single hidden layer
-  model.add(tf.layers.dense({inputShape: [1], units: 1, useBias: true}));
+  model.add(tf.layers.dense({inputShape: [1], units: 5, useBias: true}));
   
+  // Add another hidden layer with activation function
+  model.add(tf.layers.dense({units: 10, activation: 'sigmoid'}));
+
+  // Add another hidden layer with activation function
+  model.add(tf.layers.dense({units: 10, activation: 'sigmoid'}));
+
   // Add an output layer
   model.add(tf.layers.dense({units: 1, useBias: true}));
 
@@ -116,7 +122,7 @@ async function trainModel(model, inputs, labels) {
   });
   
   const batchSize = 32;
-  const epochs = 50;
+  const epochs = 200;
   
   return await model.fit(inputs, labels, {
     batchSize,
