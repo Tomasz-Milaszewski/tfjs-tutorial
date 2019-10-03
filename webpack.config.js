@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './src/2d_data_prediction/index.js',
+  entry: './src/digit_recognition/index.js',
   devServer: {
     contentBase: './dist',
   },
