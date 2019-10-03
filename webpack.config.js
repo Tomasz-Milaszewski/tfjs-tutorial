@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/2d_data_prediction/index.js',
   devServer: {
     contentBase: './dist',
   },
