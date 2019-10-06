@@ -35,6 +35,10 @@ async function run() {
   const data = new MnistData();
   await data.load();
   await showExamples(data);
+  
+  const model = getModel();
+  tfvis.show.modelSummary({name: 'Model Architecture'}, model);
+  await train(model, data);
 }
 
 document.addEventListener('DOMContentLoaded', run);
