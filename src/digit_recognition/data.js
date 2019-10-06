@@ -1,3 +1,5 @@
+import * as tf from '@tensorflow/tfjs';
+
 /**
  * @license
  * Copyright 2018 Google LLC. All Rights Reserved.
