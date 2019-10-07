@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './src/digit_recognition/index.js',
+  entry: './src/tensors/index.js',
   devServer: {
     contentBase: './dist',
   },
