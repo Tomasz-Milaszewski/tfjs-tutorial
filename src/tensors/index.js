@@ -36,3 +36,13 @@ const f = tf.tensor([10, 20, 30, 40]);
 const z = e.add(f);  // equivalent to tf.add(e, f)
 z.print();
 
+const aa = tf.tensor([[1, 2], [3, 4]]);
+aa.dispose(); // Equivalent to tf.dispose(aa)
+
+const aaa = tf.tensor([[1, 2], [3, 4]]);
+const yy = tf.tidy(() => {
+  const result = aaa.square().log().neg(); // log and square will automatically be disposed
+  return result;
+});
+
+console.log(tf.memory());
