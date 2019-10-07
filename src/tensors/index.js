@@ -26,3 +26,13 @@ d.print();
 b.array().then(array => console.log(array));
 // Returns the flattened data that backs the tensor.
 b.data().then(data => console.log(data));
+
+const x = tf.tensor([1, 2, 3, 4]);
+const y = x.square();  // equivalent to tf.square(x)
+y.print();
+
+const e = tf.tensor([1, 2, 3, 4]);
+const f = tf.tensor([10, 20, 30, 40]);
+const z = e.add(f);  // equivalent to tf.add(e, f)
+z.print();
+
