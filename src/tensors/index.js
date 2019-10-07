@@ -17,3 +17,7 @@ console.log('rank:', c.rank);
 console.log('shape:', c.shape);
 console.log('dtype', c.dtype);
 c.print();
+
+const d = b.reshape([1,4]);
+console.log('shape:', d.shape);
+d.print();
