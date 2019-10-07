@@ -6,7 +6,7 @@ console.log('shape:', a.shape);
 a.print();
 
 // Or you can create a tensor from a flat array and specify a shape.
-const shape = [4, 1];
+const shape = [2, 2];
 const b = tf.tensor([1, 2, 3, 4], shape);
 console.log('rank:', b.rank);
 console.log('shape:', b.shape);
@@ -21,3 +21,8 @@ c.print();
 const d = b.reshape([1,4]);
 console.log('shape:', d.shape);
 d.print();
+
+// Returns the multi dimensional array of values.
+b.array().then(array => console.log(array));
+// Returns the flattened data that backs the tensor.
+b.data().then(data => console.log(data));
