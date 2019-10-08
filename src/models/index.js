@@ -16,6 +16,13 @@ const model = tf.sequential({
 model.weights.forEach(w => {
   console.log(w.name, w.shape);
 });
+// Output is:
+//> dense_Dense1/kernel [784, 32]
+//> dense_Dense1/bias [32]
+//> dense_Dense2/kernel [32, 10]
+//> dense_Dense2/bias [10]
+// There are 4 weights in total, 2 per dense layer.
+// This is expected since dense layers represent a function that maps the input tensor x to an output tensor y via the equation y = Ax + b where A (the kernel) and b (the bias) are parameters of the dense layer.
 
  //Create a sequential model via add() method
 const model2 = tf.sequential();
