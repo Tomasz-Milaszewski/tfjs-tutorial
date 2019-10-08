@@ -23,3 +23,8 @@ const dense1 = tf.layers.dense({units: 32, activation: 'relu'}).apply(input);
 const dense2 = tf.layers.dense({units: 10, activation: 'softmax'}).apply(dense1);
 const model3 = tf.model({inputs: input, outputs: dense2});
 model3.summary();
+
+//Use apply() to output a concrete tensor
+const t = tf.tensor([-2, 1, 0, 5]);
+const o = tf.layers.activation({activation: 'relu'}).apply(t);
+o.print(); // [0, 1, 0, 5]
