@@ -25,14 +25,36 @@ model.weights.forEach(w => {
 // This is expected since dense layers represent a function that maps the input tensor x to an output tensor y via the equation y = Ax + b where A (the kernel) and b (the bias) are parameters of the dense layer.
 
 // Demonstration only - overriding weights auto-initialized by layers API 
-model.weights.forEach(w => {
-  const newVals = tf.randomNormal(w.shape);
-  // w.val is an instance of tf.Variable
-  w.val.assign(newVals);
+// model.weights.forEach(w => {
+//   const newVals = tf.randomNormal(w.shape);
+//   // w.val is an instance of tf.Variable
+//   w.val.assign(newVals);
+// });
+
+//Compile model
+model.compile({
+  optimizer: 'sgd',
+  loss: 'categoricalCrossentropy',
+  metrics: ['accuracy']
 });
-model.weights.forEach(w => {
-  console.log(w.name, w.shape);
-});
+
+//Training model with model.fit()
+// Generate dummy data.
+const data = tf.randomNormal([100, 784]);
+const labels = tf.randomUniform([100, 10]);
+
+function onBatchEnd(batch, logs) {
+  console.log('Accuracy', logs.acc);
+}
+
+// Train for 5 epochs with batch size of 32.
+model.fit(data, labels, {
+   epochs: 5,
+   batchSize: 32,
+   callbacks: {onBatchEnd}
+ }).then(info => {
+   console.log('Final accuracy', info.history.acc);
+ });
 
 //Create a sequential model via add() method
 const model2 = tf.sequential();
