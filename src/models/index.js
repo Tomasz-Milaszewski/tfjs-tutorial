@@ -28,3 +28,26 @@ model3.summary();
 const t = tf.tensor([-2, 1, 0, 5]);
 const o = tf.layers.activation({activation: 'relu'}).apply(t);
 o.print(); // [0, 1, 0, 5]
+
+//Save and load to local storage
+//const saveResult = await model.save('localstorage://my-model-1');
+//const model = await tf.loadLayersModel('localstorage://my-model-1');
+
+//Defining custom layer
+class SquaredSumLayer extends tf.layers.Layer {
+  constructor() {
+    super({});
+  }
+  // In this case, the output is a scalar.
+  computeOutputShape(inputShape) { return []; }
+ 
+  // call() is where we do the computation.
+  call(input, kwargs) { return input.square().sum();}
+ 
+  // Every layer needs a unique name.
+  getClassName() { return 'SquaredSum'; }
+ }
+
+const tt = tf.tensor([-2, 1, 0, 5]);
+const oo = new SquaredSumLayer().apply(tt);
+oo.print();
