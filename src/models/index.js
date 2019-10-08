@@ -7,10 +7,10 @@ const model = tf.sequential({
     tf.layers.dense({units: 10, activation: 'softmax'}),
   ]
  });
- model.summary();
- // No of params for each layer is:
- // layer one: 784(inputShape) * 32(units) + 32 = 25120
- // layer two: 32(units of previous layer) * 10(units) + 10 = 330
+model.summary();
+// No of params for each layer is:
+// layer one: 784(inputShape) * 32(units) + 32 = 25120
+// layer two: 32(units of previous layer) * 10(units) + 10 = 330
 
 //Log model weights
 model.weights.forEach(w => {
@@ -24,7 +24,17 @@ model.weights.forEach(w => {
 // There are 4 weights in total, 2 per dense layer.
 // This is expected since dense layers represent a function that maps the input tensor x to an output tensor y via the equation y = Ax + b where A (the kernel) and b (the bias) are parameters of the dense layer.
 
- //Create a sequential model via add() method
+// Demonstration only - overriding weights auto-initialized by layers API 
+model.weights.forEach(w => {
+  const newVals = tf.randomNormal(w.shape);
+  // w.val is an instance of tf.Variable
+  w.val.assign(newVals);
+});
+model.weights.forEach(w => {
+  console.log(w.name, w.shape);
+});
+
+//Create a sequential model via add() method
 const model2 = tf.sequential();
 model2.add(tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'})); 
 model2.add(tf.layers.dense({units: 10, activation: 'softmax'}));
