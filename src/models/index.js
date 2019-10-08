@@ -12,6 +12,11 @@ const model = tf.sequential({
  // layer one: 784(inputShape) * 32(units) + 32 = 25120
  // layer two: 32(units of previous layer) * 10(units) + 10 = 330
 
+//Log model weights
+model.weights.forEach(w => {
+  console.log(w.name, w.shape);
+});
+
  //Create a sequential model via add() method
 const model2 = tf.sequential();
 model2.add(tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'})); 
