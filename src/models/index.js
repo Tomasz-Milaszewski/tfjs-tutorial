@@ -81,6 +81,10 @@ function* data2() {
   console.log('Accuracy', info.history.acc);
  });
 
+// Predict 3 random samples.
+const prediction = model.predict(tf.randomNormal([3, 784]));
+prediction.print();
+
 //Create a sequential model via add() method
 const model2 = tf.sequential();
 model2.add(tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'})); 
