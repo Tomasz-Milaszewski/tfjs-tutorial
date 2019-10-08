@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './src/tensors/index.js',
+  entry: './src/models/index.js',
   devServer: {
     contentBase: './dist',
   },
