@@ -48,12 +48,37 @@ function onBatchEnd(batch, logs) {
 }
 
 // Train for 5 epochs with batch size of 32.
-model.fit(data, labels, {
-   epochs: 5,
-   batchSize: 32,
-   callbacks: {onBatchEnd}
- }).then(info => {
-   console.log('Final accuracy', info.history.acc);
+// model.fit(data, labels, {
+//    epochs: 5,
+//    batchSize: 32,
+//    callbacks: {onBatchEnd}
+//  }).then(info => {
+//    console.log('Final accuracy', info.history.acc);
+//  });
+
+//Train the model with fitDataset()
+function* data2() {
+  for (let i = 0; i < 100; i++) {
+    // Generate one sample at a time.
+    yield tf.randomNormal([784]);
+  }
+ }
+ 
+ function* labels2() {
+  for (let i = 0; i < 100; i++) {
+    // Generate one sample at a time.
+    yield tf.randomUniform([10]);
+  }
+ }
+ 
+ const xs = tf.data.generator(data2);
+ const ys = tf.data.generator(labels2);
+ // We zip the data and labels together, shuffle and batch 32 samples at a time.
+ const ds = tf.data.zip({xs, ys}).shuffle(100 /* bufferSize */).batch(32);
+ 
+ // Train the model for 5 epochs.
+ model.fitDataset(ds, {epochs: 5}).then(info => {
+  console.log('Accuracy', info.history.acc);
  });
 
 //Create a sequential model via add() method
